@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XPetClinic_MobileFrontend.Views.ClientListPage"
+             xmlns:viewmodels="clr-namespace:XPetClinic_MobileFrontend.ViewModels"
+             x:Name="ClientsPage"
+             BackgroundColor="{StaticResource BackgroundPrimary}"
+             Title="{Binding Title}"
+             >
+
+    <ContentPage.BindingContext>
+        <viewmodels:ClientListViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
+    <ContentPage.Content>
+        <RefreshView 
+            IsRefreshing="{Binding IsBusy}"
+            Command="{Binding RefreshCommand}"
+            RefreshColor="{StaticResource BackgroundAccent}"
+            Padding="10, 10, 10, 0">
+
+            <CollectionView
+                ItemsSource="{Binding Clients}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectedCommand}"
+                ItemSizingStrategy="MeasureAllItems"
+                SelectionMode="Single"
+               
+                >
+                
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label HorizontalOptions="Center" Text="No Clients"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True" Padding="10"
+                               Margin="0, 0, 0, 10"
+                               CornerRadius="20"
+                               BorderColor="{StaticResource ForegroundAccent}"
+                               
+                               BackgroundColor="{StaticResource BackgroundAccent}">
+                            <StackLayout >
+                                <StackLayout Orientation="Horizontal"
+                                             >
+                                    <Label Text="{Binding firstName}"
+                                       FontSize="Large"
+                                           TextColor="{StaticResource ForegroundPrimary}"/>
+                                    <Label Text="{Binding lastName}"
+                                       FontSize="Large"
+                                           TextColor="{StaticResource ForegroundPrimary}"/>
+                                </StackLayout>
+                            
+                                <Label Text="{Binding telephone}"
+                                       FontSize="Medium"
+                                       TextColor="{StaticResource ForegroundAccent}"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

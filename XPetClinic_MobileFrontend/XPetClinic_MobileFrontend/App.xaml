@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XPetClinic_MobileFrontend.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BackgroundPrimary">#333333</Color>
+            <Color x:Key="ForegroundPrimary">#EEEEEE</Color>
+            <Color x:Key="BackgroundAccent">#05445e</Color>
+            <Color x:Key="ForegroundAccent">#AAAAAA</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundPrimary}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundAccent}"/>
+            </Style>
+            <Style TargetType="NavigationPage" >
+                <Setter Property="BarBackgroundColor" Value="{StaticResource BackgroundPrimary}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource ForegroundPrimary}"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundAccent}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+
+            </ResourceDictionary>        
+    </Application.Resources>
+</Application>
