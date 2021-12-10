@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XPetClinic_MobileFrontend.ViewModels"
+             x:Class="XPetClinic_MobileFrontend.Views.VisitDetailsPage"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource BackgroundPrimary}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            Command="{Binding GoBackCommand}"
+            IsEnabled="True"/>
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.BindingContext>
+        <viewmodels:VisitDetailsViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <StackLayout Padding="30, 15">
+
+            <Label Text="{Binding Message}" TextColor="Red"/>
+            <Label Text="Date"/>
+            <DatePicker Date="{Binding SelectedVisit.date}"
+                        TextColor="{StaticResource ForegroundPrimary}">
+
+            </DatePicker>
+            <Label Text="Description"/>
+            <Editor Text="{Binding SelectedVisit.description}" AutoSize="TextChanges"
+                    TextColor="{StaticResource ForegroundPrimary}">
+
+            </Editor>
+            <Label Text="Vet" />
+            <Picker Title="Please select a vet"
+                ItemsSource="{Binding Vets}"
+                    TitleColor="{StaticResource ForegroundAccent}"
+                    ItemDisplayBinding="{Binding firstName}"
+                    SelectedItem="{Binding SelectedVet}"
+                    TextColor="{StaticResource ForegroundPrimary}">
+
+
+            </Picker>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Active"/>
+                <Switch IsToggled="{Binding SelectedVisit.status}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="{Binding ButtonText}"
+                Command="{Binding SubmitCommand}"/>
+                <Button Text="Cancel"
+                Command="{Binding GoBackCommand}"/>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

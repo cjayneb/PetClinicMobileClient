@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XPetClinic_MobileFrontend.ViewModels"
+             x:Class="XPetClinic_MobileFrontend.Views.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource BackgroundPrimary}">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BackgroundEntry">#222222</Color>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundPrimary}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10" >
+            <Label Text="Login with your PetClinic Account"
+                   HorizontalOptions="Center"
+                   FontSize="Large"
+                   TextColor="{StaticResource ForegroundPrimary}"
+                   Margin="0, 200, 0, 50"/>
+            <Label Text="{Binding Message}" TextColor="Red"/>
+            <Frame Padding="0"
+                    CornerRadius="10">
+                <Entry Placeholder="username" Text="{Binding Username}"
+                        PlaceholderColor="{StaticResource ForegroundAccent}"
+                        BackgroundColor="{StaticResource BackgroundEntry}"
+                        ReturnType="Next"/>
+            </Frame>
+            <Frame Padding="0"
+                    CornerRadius="10">
+                <Entry Placeholder="password" IsPassword="True" Text="{Binding Password}"
+                        PlaceholderColor="{StaticResource ForegroundAccent}"
+                        BackgroundColor="{StaticResource BackgroundEntry}"/>
+            </Frame>
+            
+            <Button Text="Login" Command="{Binding LoginCommand}"
+                    CornerRadius="10"/>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

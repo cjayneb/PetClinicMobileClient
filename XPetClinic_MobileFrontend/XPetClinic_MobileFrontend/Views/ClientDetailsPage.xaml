@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XPetClinic_MobileFrontend.ViewModels"
+             x:Class="XPetClinic_MobileFrontend.Views.ClientDetailsPage"
+             x:Name="ClientPage"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource BackgroundPrimary}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            Command="{Binding GoBackCommand}"
+            IsEnabled="True"/>
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundAccent}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+
+
+        <StackLayout Padding="50, 15">
+            <StackLayout Margin="0, 0, 0, 50" Spacing="20">
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="{Binding SelectedClient.firstName}"
+                                   TextColor="{StaticResource ForegroundPrimary}"
+                                   FontSize="40"/>
+                    <Label Text="{Binding SelectedClient.lastName}"
+                                   TextColor="{StaticResource ForegroundPrimary}"
+                                   FontSize="40"/>
+                </StackLayout>
+                <Label Text="{Binding SelectedClient.telephone, StringFormat='Telephone:     {0}'}"/>
+                <Label Text="{Binding SelectedClient.address, StringFormat='Address:         {0}'}"/>
+                <Label Text="{Binding SelectedClient.city, StringFormat='City:                 {0}'}"/>
+            </StackLayout>
+
+            <Label Text="Pets" FontAttributes="Bold"
+                           FontSize="30"
+                           TextColor="{StaticResource ForegroundPrimary}"/>
+
+            <CollectionView 
+                        ItemsSource="{Binding SelectedClient.pets}"
+                        SelectedItem="{Binding SelectedPet, Mode=TwoWay}"
+                        ItemSizingStrategy="MeasureAllItems"
+                        SelectionMode="Single">
+
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label HorizontalOptions="Center" Text="No Pets"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True" Padding="10"
+                               CornerRadius="20"
+                               BorderColor="{StaticResource ForegroundAccent}"
+                               BackgroundColor="{StaticResource BackgroundAccent}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="Large" Text="{Binding name}"
+                                            VerticalOptions="Center"
+                                            TextColor="{StaticResource ForegroundPrimary}"/>
+                                <Button Text="Manage Visits" HorizontalOptions="EndAndExpand"
+                                            CornerRadius="15"
+                                            BackgroundColor="{StaticResource BackgroundPrimary}"
+                                                Command="{Binding Path=BindingContext.ManageCommand,
+                                                            Source={x:Reference ClientPage}}"
+                                                CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
