@@ -47,6 +47,10 @@ namespace XPetClinic_MobileFrontend.ViewModels
         {
             Title = "Login";
 
+            Username = "";
+
+            Password = "";
+
             this.networkService = NetworkService<HttpResponseMessage>.Instance;
 
             LoginCommand = new AsyncCommand(Login);
